@@ -11,7 +11,6 @@ import java.util.Enumeration;
 
 public class SerialTest implements SerialPortEventListener {
 
-	random Random = new random(null);
 	SerialPort serialPort;
 	/** The port we’re normally going to use. */
 	private static final String PORT_NAMES[] = {" /dev/tty.usbserial-A9007UX1 ", // Mac OS X

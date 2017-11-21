@@ -9,13 +9,8 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import java.util.Enumeration;
 
-
-
 public class ConnectionArduino implements SerialPortEventListener{
 
-	private String inputLine=null;
-	
-	
 	SerialPort serialPort;
 	/** The port we’re normally going to use. */
 	private static final String PORT_NAMES[] = {" /dev/tty.usbserial-A9007UX1 ", // Mac OS X
@@ -25,7 +20,7 @@ public class ConnectionArduino implements SerialPortEventListener{
 
 	
 	
-
+	Model md=new Model();
 	
 	
 	
@@ -81,29 +76,29 @@ public class ConnectionArduino implements SerialPortEventListener{
 	public synchronized void serialEvent(SerialPortEvent oEvent) {
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
-			
+				String inputLine=null;
 				if (input.ready()) {
 					inputLine = input.readLine();
 
 					String [] chunks = inputLine.split(" , ");
-					/*int i = 0 ;
+					int i = 0 ;
 					if (i==0) {
 						this.md.setHumidity(Double.parseDouble(inputLine))  ;
 						System.out.println(this.md.getHumidity());
 						i=1;
 					}
 					else if (i==1) {
-						Model.setTemperature(Double.parseDouble(inputLine))  ;
-						Model.setTemperaturelist(inputLine);
-						System.out.println(Model.getTemperature());
+						this.md.setTemperature(Double.parseDouble(inputLine))  ;
+						//this.md.setTemperaturelist(inputLine);
+						System.out.println(this.md.getTemperature());
 						i=2;
 					}
 					else {
-						Model.setDew(Double.parseDouble(inputLine))  ;
+						this.md.setDew(Double.parseDouble(inputLine))  ;
 						//System.out.println(Model.getDew());
 						i=0;
 					}
-				*///	System.out.println(inputLine);
+				//	System.out.println(inputLine);
 
 					System.out.println(chunks[0] + " \t " + chunks[1] + " \t " + chunks[2] +  "\t »");
 				}
@@ -128,11 +123,5 @@ public class ConnectionArduino implements SerialPortEventListener{
 		};
 		t.start();
 		System.out.println(" Started ");
-	}
-	public String getInputLine() {
-		return inputLine;
-	}
-	public void setInputLine(String inputLine) {
-		this.inputLine = inputLine;
 	}
 }

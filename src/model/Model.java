@@ -49,39 +49,30 @@ public class Model {
 		this.temperaturelist = temperaturelist;
 		
 		
-		
 	}
 	
-	double set () {
-		
-		ConnectionArduino connectionArduino  = new ConnectionArduino();
-		
-		
-		
-		
-		
+/*	public void set() {
+	//	ConnectionArduino connectionArduino = new ConnectionArduino();
 		
 		int i = 0 ;
 		if (i==0) {
-			double d = Double.parseDouble(connectionArduino.getInputLine());
-			this.humidity.setHumidity(d)  ;
-			System.out.println(this.md.getHumidity());
+			humidity=Double.parseDouble(connectionArduino.getInputLine());
+			System.out.println(humidity);
 			i=1;
 		}
+		
 		else if (i==1) {
-			Model.setTemperature(Double.parseDouble(inputLine))  ;
-			Model.setTemperaturelist(inputLine);
-			System.out.println(Model.getTemperature());
+			temperature=Double.parseDouble(connectionArduino.getInputLine());
+			System.out.println(temperature);
 			i=2;
 		}
-		else {
-			Model.setDew(Double.parseDouble(inputLine))  ;
-			//System.out.println(Model.getDew());
-			i=0;
-		}
 		
-		return; 
+		else {
+			dew=Double.parseDouble(connectionArduino.getInputLine());
+			System.out.println(dew);
+			i=2;
+		}
 	}
-	
+	*/
 	
 }

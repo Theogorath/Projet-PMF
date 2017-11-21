@@ -3,13 +3,13 @@ package model;
 
 import java.util.*;
 
-public class Model {
+public class Model extends Observable {
 	private double dew ;
 	private double temperature ;
 	private double humidity ;
 	private double order ;
-	private ArrayList<Double> temperaturelist = new ArrayList();
-	
+
+	private double temperaturelist[] = new double[6];
 	
 	public double getDew() {
 		return dew;
@@ -28,6 +28,8 @@ public class Model {
 	}
 	public void setHumidity(double humidity) {
 		this.humidity = humidity;
+		setChanged();
+		notifyObservers(this.humidity);
 	}
 	public double getOrder() {
 		return order;
@@ -35,13 +37,14 @@ public class Model {
 	public void setOrder(double order) {
 		this.order = order;
 	}
-	public ArrayList getTemperaturelist() {
+	public double[] getTemperaturelist() {
 		return temperaturelist;
 	}
-	public void setTemperaturelist(double inputLine) {
-		this.temperaturelist.add(inputLine);
-
+	public void setTemperaturelist(double[] temperaturelist) {
+		this.temperaturelist = temperaturelist;
 	}
+	
+	
 	
 	public Model(){
 		this.humidity = humidity;
@@ -52,29 +55,8 @@ public class Model {
 		
 		
 	}
+
 	
-/*	public void set() {
-	//	ConnectionArduino connectionArduino = new ConnectionArduino();
-		
-		int i = 0 ;
-		if (i==0) {
-			humidity=Double.parseDouble(connectionArduino.getInputLine());
-			System.out.println(humidity);
-			i=1;
-		}
-		
-		else if (i==1) {
-			temperature=Double.parseDouble(connectionArduino.getInputLine());
-			System.out.println(temperature);
-			i=2;
-		}
-		
-		else {
-			dew=Double.parseDouble(connectionArduino.getInputLine());
-			System.out.println(dew);
-			i=2;
-		}
-	}
-	*/
+
 	
 }

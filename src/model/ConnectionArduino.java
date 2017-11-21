@@ -10,7 +10,7 @@ import gnu.io.SerialPortEventListener;
 import java.util.Enumeration;
 
 public class ConnectionArduino implements SerialPortEventListener{
-
+	int i = 0 ;
 	SerialPort serialPort;
 	/** The port we’re normally going to use. */
 	private static final String PORT_NAMES[] = {" /dev/tty.usbserial-A9007UX1 ", // Mac OS X
@@ -81,16 +81,16 @@ public class ConnectionArduino implements SerialPortEventListener{
 					inputLine = input.readLine();
 
 					String [] chunks = inputLine.split(" , ");
-					int i = 0 ;
+					
 					if (i==0) {
 						this.md.setHumidity(Double.parseDouble(inputLine))  ;
-						System.out.println(this.md.getHumidity());
+						//System.out.println(this.md.getHumidity());
 						i=1;
 					}
 					else if (i==1) {
 						this.md.setTemperature(Double.parseDouble(inputLine))  ;
 						//this.md.setTemperaturelist(inputLine);
-						System.out.println(this.md.getTemperature());
+						//System.out.println(this.md.getTemperature());
 						i=2;
 					}
 					else {
@@ -110,18 +110,5 @@ public class ConnectionArduino implements SerialPortEventListener{
 		// Ignore all the other eventTypes, but you should consider the other ones.
 	}
 
-	public static void main(String[] args) throws Exception {
 
-		ConnectionArduino main = new ConnectionArduino();
-		main.initialize();
-		Thread t=new Thread() {
-			public void run() {
-				//the following line will keep this app alive for 1000 seconds,
-				//waiting for events to occur and responding to them (printing incoming messages to console).
-				try {Thread.sleep(1000000);} catch (InterruptedException ie) {}
-			}
-		};
-		t.start();
-		System.out.println(" Started ");
-	}
 }

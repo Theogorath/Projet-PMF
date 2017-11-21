@@ -17,15 +17,6 @@ public class Controller {
 		
 		ConnectionArduino connectionArduino = new ConnectionArduino();
 		connectionArduino.initialize();
-		Thread t=new Thread() {
-			public void run() {
-				try {
-					Thread.sleep(1000000);
-					}catch (InterruptedException ie) {}
-			}
-		};
-		t.start();
-		System.out.println(" Started ");
-		
+		System.out.println(this.model.getHumidity());
 	}
 }

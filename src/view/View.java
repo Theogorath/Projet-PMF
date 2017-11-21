@@ -39,14 +39,14 @@ public class View extends JFrame{
 	
 	public View(){
 		this.setTitle("Programme");
-		this.setSize(800, 600);
+		this.setSize(800, 450);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		tempLabel = new JLabel("Température = " + Double.toString(temperature) + "°C");
-		tempLabel.setBounds(295, 10, 210, 20);
+		tempLabel.setBounds(295, 35, 210, 20);
 		tempLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(tempLabel);
 		
@@ -56,31 +56,31 @@ public class View extends JFrame{
 		this.getContentPane().add(humiLabel);
 		
 		condenLabel = new JLabel("Risque de condensation :");
-		condenLabel.setBounds(400, 300, 250, 20);
+		condenLabel.setBounds(400, 150, 250, 20);
 		condenLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(condenLabel);
 		
 		tempConsigneLabel = new JLabel("Température consigne = " + Double.toString(orderTemperature) + "°C");
-		tempConsigneLabel.setBounds(255, 35, 290, 20);
+		tempConsigneLabel.setBounds(255, 60, 290, 20);
 		tempConsigneLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(tempConsigneLabel);
 		
 		consigneLabel = new JLabel("Consigne :");
-		consigneLabel.setBounds(315, 60, 100, 20);
+		consigneLabel.setBounds(570, 35, 100, 20);
 		consigneLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(consigneLabel);
 		
 		consigneTextField = new JTextField();
-		consigneTextField.setBounds(415, 60, 100, 20);
+		consigneTextField.setBounds(670, 35, 100, 20);
 		this.getContentPane().add(consigneTextField);
 		
 		validateButton = new JButton("Valider");
-		validateButton.setBounds(350, 85, 100, 25);
+		validateButton.setBounds(620, 60, 100, 25);
 		validateButton.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(validateButton);
 		
 		etatConden = new JLabel();
-		etatConden.setBounds(450, 330, 225, 225);
+		etatConden.setBounds(450, 180, 225, 225);
 		etatConden.setIcon(okImage);
 		this.getContentPane().add(etatConden);
 		
@@ -88,7 +88,7 @@ public class View extends JFrame{
 		chartPanel = new ChartPanel(lineChart);
 		chartPanel.setBorder(UIManager.getBorder("TextField.border"));
 		chartPanel.setSize(350, 260);
-		chartPanel.setLocation(10, 300);
+		chartPanel.setLocation(10, 150);
 		this.getContentPane().add(chartPanel);
 		
 		

@@ -2,6 +2,8 @@ package view;
 
 import java.awt.BasicStroke;
 import java.awt.Font;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -21,7 +23,9 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-public class View extends JFrame{
+import model.Model;
+
+public class View extends JFrame implements Observer{
 	
 	private static final long serialVersionUID = -3825360027604802902L;
 	private JLabel tempLabel;
@@ -139,6 +143,15 @@ public class View extends JFrame{
 
 	public void setOrderTemperature(double orderTemperature) {
 		this.orderTemperature = orderTemperature;
+	}
+
+	@Override
+	public void update(Observable obs, Object arg) {
+		// TODO Auto-generated method stub
+		if(obs instanceof Model){
+			Model model = (Model) obs;
+			System.out.println("humidité = " + model.getHumidity());
+		}
 	}
 	
 }

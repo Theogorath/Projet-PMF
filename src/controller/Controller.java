@@ -17,6 +17,5 @@ public class Controller {
 		
 		ConnectionArduino connectionArduino = new ConnectionArduino();
 		connectionArduino.initialize();
-		System.out.println(this.model.getHumidity());
 	}
 }

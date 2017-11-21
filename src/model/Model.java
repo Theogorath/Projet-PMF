@@ -9,6 +9,8 @@ public class Model {
 	private double humidity ;
 	private double order ;
 	private ArrayList<Double> temperaturelist = new ArrayList();
+	
+	
 	public double getDew() {
 		return dew;
 	}

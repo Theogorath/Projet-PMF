@@ -84,6 +84,7 @@ public class ConnectionArduino implements SerialPortEventListener{
 					}
 					else if (i==1) {
 						Model.setTemperature(Double.parseDouble(inputLine))  ;
+						Model.setTemperaturelist(inputLine);
 						System.out.println(Model.getTemperature());
 						i=2;
 					}

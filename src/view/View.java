@@ -30,9 +30,9 @@ public class View extends JFrame{
 	private JFreeChart lineChart;
 	private ChartPanel chartPanel;
 	
-	private double humidite;
+	private double humidity;
 	private double temperature;
-	private double temperatureConsigne;
+	private double orderTemperature;
 	
 	private Icon okImage = new ImageIcon("image\\index.png");
 	private Icon warningImage = new ImageIcon("image\\index2.png");
@@ -50,7 +50,7 @@ public class View extends JFrame{
 		tempLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(tempLabel);
 		
-		humiLabel = new JLabel("Humidité = " + Double.toString(humidite) + "%");
+		humiLabel = new JLabel("Humidité = " + Double.toString(humidity) + "%");
 		humiLabel.setBounds(20, 35, 150, 20);
 		humiLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(humiLabel);
@@ -60,7 +60,7 @@ public class View extends JFrame{
 		condenLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(condenLabel);
 		
-		tempConsigneLabel = new JLabel("Température consigne = " + Double.toString(temperatureConsigne) + "°C");
+		tempConsigneLabel = new JLabel("Température consigne = " + Double.toString(orderTemperature) + "°C");
 		tempConsigneLabel.setBounds(255, 35, 290, 20);
 		tempConsigneLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(tempConsigneLabel);
@@ -105,6 +105,30 @@ public class View extends JFrame{
 	}
 	
 	
+	public double getHumidity() {
+		return humidity;
+	}
+
+	public void setHumidity(double humidity) {
+		this.humidity = humidity;
+	}
+
+	public double getTemperature() {
+		return temperature;
+	}
+
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
+	}
+
+	public double getOrderTemperature() {
+		return orderTemperature;
+	}
+
+	public void setOrderTemperature(double orderTemperature) {
+		this.orderTemperature = orderTemperature;
+	}
+
 	public static void main(String[] args){
 		View fenetre = new View();
 		fenetre.setVisible(true);

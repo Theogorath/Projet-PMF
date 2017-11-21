@@ -38,10 +38,50 @@ public class Model {
 	}
 	public void setTemperaturelist(double inputLine) {
 		this.temperaturelist.add(inputLine);
-	}
 
+	}
 	
+	public Model(){
+		this.humidity = humidity;
+		this.temperature = temperature;
+		this.dew = dew;
+		this.order = order;
+		this.temperaturelist = temperaturelist;
+		
+		
+		
+	}
 	
+	double set () {
+		
+		ConnectionArduino connectionArduino  = new ConnectionArduino();
+		
+		
+		
+		
+		
+		
+		int i = 0 ;
+		if (i==0) {
+			double d = Double.parseDouble(connectionArduino.getInputLine());
+			this.humidity.setHumidity(d)  ;
+			System.out.println(this.md.getHumidity());
+			i=1;
+		}
+		else if (i==1) {
+			Model.setTemperature(Double.parseDouble(inputLine))  ;
+			Model.setTemperaturelist(inputLine);
+			System.out.println(Model.getTemperature());
+			i=2;
+		}
+		else {
+			Model.setDew(Double.parseDouble(inputLine))  ;
+			//System.out.println(Model.getDew());
+			i=0;
+		}
+		
+		return; 
+	}
 	
 	
 }

@@ -13,4 +13,4 @@ public class Controller {
 	public void launch(){	
 		this.view.setVisible(true);
 	}
-}
+}//

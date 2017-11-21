@@ -10,4 +10,4 @@ public class main {
 		Controller controller = new Controller(new View(), new Model());
 		controller.launch();
 		}
-}
+}//

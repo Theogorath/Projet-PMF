@@ -8,7 +8,7 @@ public class Model {
 	private double temperature ;
 	private double humidity ;
 	private double order ;
-	ArrayList temperaturelist = new ArrayList();
+	private ArrayList<Double> temperaturelist = new ArrayList();
 	public double getDew() {
 		return dew;
 	}
@@ -36,9 +36,12 @@ public class Model {
 	public ArrayList getTemperaturelist() {
 		return temperaturelist;
 	}
-	public void setTemperaturelist(String inputLine) {
-		this.temperaturelist = inputLine;
+	public void setTemperaturelist(double inputLine) {
+		this.temperaturelist.add(inputLine);
 	}
 
+	
+	
+	
 	
 }

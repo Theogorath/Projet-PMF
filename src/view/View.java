@@ -128,11 +128,5 @@ public class View extends JFrame{
 	public void setOrderTemperature(double orderTemperature) {
 		this.orderTemperature = orderTemperature;
 	}
-
-	public static void main(String[] args){
-		View fenetre = new View();
-		fenetre.setVisible(true);
-		
-	}
 	
 }

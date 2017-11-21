@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BasicStroke;
 import java.awt.Font;
 
 import javax.swing.Icon;
@@ -14,7 +15,11 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 public class View extends JFrame{
 	
@@ -27,8 +32,12 @@ public class View extends JFrame{
 	private JTextField consigneTextField;
 	private JButton validateButton;
 	private JLabel etatConden;
-	private JFreeChart lineChart;
+	private JFreeChart xylineChart;
 	private ChartPanel chartPanel;
+	private XYSeriesCollection dataset = new XYSeriesCollection();
+	private XYSeries tempGraph = new XYSeries("");
+	private XYPlot plot;
+	private XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 	
 	private double humidity;
 	private double temperature;
@@ -84,23 +93,26 @@ public class View extends JFrame{
 		etatConden.setIcon(okImage);
 		this.getContentPane().add(etatConden);
 		
-		lineChart = ChartFactory.createLineChart("", "Temps", "Température", createDataset(), PlotOrientation.VERTICAL, false, false, false);
-		chartPanel = new ChartPanel(lineChart);
+		xylineChart = ChartFactory.createXYLineChart("", "Temps", "Température", createDataset(), PlotOrientation.VERTICAL, false, false, false);
+		chartPanel = new ChartPanel(xylineChart);
 		chartPanel.setBorder(UIManager.getBorder("TextField.border"));
 		chartPanel.setSize(350, 260);
 		chartPanel.setLocation(10, 150);
+		plot = xylineChart.getXYPlot();
+		renderer.setSeriesStroke(0, new BasicStroke(2.0f));
+		plot.setRenderer(renderer);
 		this.getContentPane().add(chartPanel);
 		
 		
 	}
 	
-	public DefaultCategoryDataset createDataset(){
-		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		dataset.addValue(0, "Température", "30");
-		dataset.addValue(10, "Température", "60");
-		dataset.addValue(-10, "Température", "90");
-		dataset.addValue(-5, "Température", "120");
-		dataset.addValue(20, "Température", "150");
+	public XYDataset createDataset(){
+		tempGraph.add(0, 0);
+		tempGraph.add(30, 10);
+		tempGraph.add(60, -10);
+		tempGraph.add(90, -5);
+		tempGraph.add(120, 20);
+		dataset.addSeries(tempGraph);
 		return dataset;
 	}
 	

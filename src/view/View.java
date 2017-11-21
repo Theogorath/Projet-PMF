@@ -28,10 +28,10 @@ public class View extends JFrame{
 	private JLabel humiLabel;
 	private JLabel condenLabel;
 	private JLabel tempConsigneLabel;
-	private JLabel consigneLabel;
-	private JTextField consigneTextField;
+	private JLabel orderLabel;
+	private JTextField orderTextField;
 	private JButton validateButton;
-	private JLabel etatConden;
+	private JLabel stateConden;
 	private JFreeChart xylineChart;
 	private ChartPanel chartPanel;
 	private XYSeriesCollection dataset = new XYSeriesCollection();
@@ -74,24 +74,24 @@ public class View extends JFrame{
 		tempConsigneLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(tempConsigneLabel);
 		
-		consigneLabel = new JLabel("Consigne :");
-		consigneLabel.setBounds(570, 35, 100, 20);
-		consigneLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
-		this.getContentPane().add(consigneLabel);
+		orderLabel = new JLabel("Consigne :");
+		orderLabel.setBounds(570, 35, 100, 20);
+		orderLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
+		this.getContentPane().add(orderLabel);
 		
-		consigneTextField = new JTextField();
-		consigneTextField.setBounds(670, 35, 100, 20);
-		this.getContentPane().add(consigneTextField);
+		orderTextField = new JTextField();
+		orderTextField.setBounds(670, 35, 100, 20);
+		this.getContentPane().add(orderTextField);
 		
 		validateButton = new JButton("Valider");
 		validateButton.setBounds(620, 60, 100, 25);
 		validateButton.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(validateButton);
 		
-		etatConden = new JLabel();
-		etatConden.setBounds(450, 180, 225, 225);
-		etatConden.setIcon(okImage);
-		this.getContentPane().add(etatConden);
+		stateConden = new JLabel();
+		stateConden.setBounds(450, 180, 225, 225);
+		stateConden.setIcon(okImage);
+		this.getContentPane().add(stateConden);
 		
 		xylineChart = ChartFactory.createXYLineChart("", "Temps", "Température", createDataset(), PlotOrientation.VERTICAL, false, false, false);
 		chartPanel = new ChartPanel(xylineChart);
@@ -107,11 +107,11 @@ public class View extends JFrame{
 	}
 	
 	public XYDataset createDataset(){
-		tempGraph.add(0, 0);
+		/*tempGraph.add(0, 0);
 		tempGraph.add(30, 10);
 		tempGraph.add(60, -10);
 		tempGraph.add(90, -5);
-		tempGraph.add(120, 20);
+		tempGraph.add(120, 20);*/
 		dataset.addSeries(tempGraph);
 		return dataset;
 	}

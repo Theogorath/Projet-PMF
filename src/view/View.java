@@ -1,4 +1,4 @@
-package vue;
+package view;
 
 import java.awt.Font;
 
@@ -16,7 +16,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class Vue extends JFrame{
+public class View extends JFrame{
 	
 	private static final long serialVersionUID = -3825360027604802902L;
 	private JLabel tempLabel;
@@ -37,7 +37,7 @@ public class Vue extends JFrame{
 	private Icon okImage = new ImageIcon("image\\index.png");
 	private Icon warningImage = new ImageIcon("image\\index2.png");
 	
-	public Vue(){
+	public View(){
 		this.setTitle("Programme");
 		this.setSize(800, 600);
 		this.setResizable(false);
@@ -106,7 +106,7 @@ public class Vue extends JFrame{
 	
 	
 	public static void main(String[] args){
-		Vue fenetre = new Vue();
+		View fenetre = new View();
 		fenetre.setVisible(true);
 		
 	}

@@ -20,7 +20,7 @@ public class Controller {
 	public void launch(){	
 		this.view.setVisible(true);
 		ConnectionArduino connectionArduino = new ConnectionArduino(this.model);
-		connectionArduino.initialize();
+		connectionArduino.connect("COM4");
 	}
 	
 	class AddListener implements ActionListener{

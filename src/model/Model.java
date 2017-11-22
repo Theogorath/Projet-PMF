@@ -9,8 +9,6 @@ public class Model extends Observable {
 	private double humidity ;
 	private double order ;
 
-	private double temperaturelist[] = new double[6];
-	
 	public double getDew() {
 		return dew;
 	}
@@ -30,6 +28,8 @@ public class Model extends Observable {
 		this.humidity = humidity;
 		setChanged();
 		notifyObservers(this.humidity);
+		System.out.println(this.humidity);
+		System.out.println("a");
 	}
 	public double getOrder() {
 		return order;
@@ -37,12 +37,7 @@ public class Model extends Observable {
 	public void setOrder(double order) {
 		this.order = order;
 	}
-	public double[] getTemperaturelist() {
-		return temperaturelist;
-	}
-	public void setTemperaturelist(double[] temperaturelist) {
-		this.temperaturelist = temperaturelist;
-	}
+
 	
 	
 	
@@ -51,7 +46,7 @@ public class Model extends Observable {
 		this.temperature = temperature;
 		this.dew = dew;
 		this.order = order;
-		this.temperaturelist = temperaturelist;
+	
 		
 		
 	}

@@ -20,7 +20,8 @@ public class ConnectionArduino implements SerialPortEventListener{
 
 	
 	
-	Model md=new Model();
+	private Model md;
+	//=new Model();
 	
 	
 	
@@ -29,6 +30,11 @@ public class ConnectionArduino implements SerialPortEventListener{
 	private static final int TIME_OUT = 2000;
 	private static final int DATA_RATE = 9600;
 
+	
+	public ConnectionArduino (Model model) {
+		this.md = model;
+	}
+	
 	public void initialize() {
 		CommPortIdentifier portId = null;
 		Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();

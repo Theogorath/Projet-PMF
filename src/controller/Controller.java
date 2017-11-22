@@ -10,12 +10,12 @@ public class Controller {
 	public Controller(final View view, final Model model){
 		this.view = view;
 		this.model = model;
+		this.model.addObserver(this.view);
 	}
 
 	public void launch(){	
 		this.view.setVisible(true);
-		
-		ConnectionArduino connectionArduino = new ConnectionArduino();
+		ConnectionArduino connectionArduino = new ConnectionArduino(this.model);
 		connectionArduino.initialize();
 	}
 }

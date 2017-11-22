@@ -19,7 +19,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -46,6 +45,7 @@ public class View extends JFrame implements Observer{
 	private double humidity;
 	private double temperature;
 	private double orderTemperature;
+	private double timer = 0;
 	
 	private Icon okImage = new ImageIcon("image\\index.png");
 	private Icon warningImage = new ImageIcon("image\\index2.png");
@@ -97,7 +97,8 @@ public class View extends JFrame implements Observer{
 		stateConden.setIcon(okImage);
 		this.getContentPane().add(stateConden);
 		
-		xylineChart = ChartFactory.createXYLineChart("", "Temps", "Température", createDataset(), PlotOrientation.VERTICAL, false, false, false);
+		dataset.addSeries(tempGraph);
+		xylineChart = ChartFactory.createXYLineChart("", "Temps", "Température", dataset, PlotOrientation.VERTICAL, false, false, false);
 		chartPanel = new ChartPanel(xylineChart);
 		chartPanel.setBorder(UIManager.getBorder("TextField.border"));
 		chartPanel.setSize(350, 260);
@@ -107,19 +108,29 @@ public class View extends JFrame implements Observer{
 		plot.setRenderer(renderer);
 		this.getContentPane().add(chartPanel);
 		
-		
 	}
 	
-	public XYDataset createDataset(){
-		/*tempGraph.add(0, 0);
+	/*public XYDataset createDataset(){
+		tempGraph.add(0, 0);
 		tempGraph.add(30, 10);
 		tempGraph.add(60, -10);
 		tempGraph.add(90, -5);
-		tempGraph.add(120, 20);*/
+		tempGraph.add(120, 20);
 		dataset.addSeries(tempGraph);
+		System.out.println("Taille du dataset (" + tempGraph.getClass() + ") = " + tempGraph.getItemCount());
 		return dataset;
-	}
+	}*/
 	
+	public void fillDataset(){
+		if(tempGraph.getItemCount() > 20){
+			tempGraph.add(timer, temperature);
+			tempGraph.remove(0);
+		} else {
+			tempGraph.add(timer, temperature);
+			
+		}
+		timer = timer + 30;
+	}
 	
 	public double getHumidity() {
 		return humidity;
@@ -153,6 +164,7 @@ public class View extends JFrame implements Observer{
 		System.out.println("update");
 		if(obs instanceof Model){
 			setTemperature(((Model) obs).getTemperature());
+			fillDataset();
 			setHumidity(((Model) obs).getHumidity());
 			System.out.println("Température = " + ((Model) obs).getTemperature());
 			System.out.println("Humidité = " + ((Model) obs).getHumidity());

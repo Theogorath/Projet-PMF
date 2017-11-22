@@ -14,12 +14,16 @@ public class Model extends Observable {
 	}
 	public void setDew(double dew) {
 		this.dew = dew;
+		setChanged();
+		notifyObservers(this.dew);
 	}
 	public double getTemperature() {
 		return temperature;
 	}
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
+		setChanged();
+		notifyObservers(this.temperature);
 	}
 	public double getHumidity() {
 		return humidity;

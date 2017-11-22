@@ -127,7 +127,7 @@ public class View extends JFrame implements Observer{
 
 	public void setHumidity(double humidity) {
 		this.humidity = humidity;
-		humiLabel.setText(String.valueOf(this.humidity));
+		humiLabel.setText("Humidité = " + String.valueOf(this.humidity) + "%");
 	}
 
 	public double getTemperature() {
@@ -136,6 +136,7 @@ public class View extends JFrame implements Observer{
 
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
+		tempLabel.setText("Température = " + String.valueOf(this.temperature) + "°C");
 	}
 
 	public double getOrderTemperature() {
@@ -145,19 +146,16 @@ public class View extends JFrame implements Observer{
 	public void setOrderTemperature(double orderTemperature) {
 		this.orderTemperature = orderTemperature;
 	}
-
-	/* void init(Model lSigAObserver) {
-	    lSigAObserver.addObserver(this); // (2) ajout d'observateur
-	  }
-	*/
 	
 	@Override
 	public void update(Observable obs, Object obj) {
 		// TODO Auto-generated method stub
 		System.out.println("update");
 		if(obs instanceof Model){
+			setTemperature(((Model) obs).getTemperature());
 			setHumidity(((Model) obs).getHumidity());
-			System.out.println("humidité = " + ((Model) obs).getHumidity());
+			System.out.println("Température = " + ((Model) obs).getTemperature());
+			System.out.println("Humidité = " + ((Model) obs).getHumidity());
 		}
 		
 	}

@@ -19,8 +19,6 @@ public class Communicator {
 			" /dev/ttyUSB0 ", // Linux
 			"COM4", // Windows
 	};
-	
-	private BufferedReader input;
 	private OutputStream output;
 	private static final int TIME_OUT = 2000;
 	private static final int DATA_RATE = 9600;
@@ -53,7 +51,6 @@ public class Communicator {
 					SerialPort.PARITY_NONE);
 
 			// open the streams
-			input = new BufferedReader(new InputStreamReader(serialPort.getInputStream()));
 			output = serialPort.getOutputStream();
 
 			serialPort.notifyOnDataAvailable(true);

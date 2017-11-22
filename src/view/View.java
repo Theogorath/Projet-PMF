@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BasicStroke;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -30,7 +31,7 @@ public class View extends JFrame implements Observer{
 	private JLabel tempLabel;
 	private JLabel humiLabel;
 	private JLabel condenLabel;
-	private JLabel tempConsigneLabel;
+	private JLabel orderTempLabel;
 	private JLabel orderLabel;
 	private JTextField orderTextField;
 	private JButton validateButton;
@@ -44,7 +45,6 @@ public class View extends JFrame implements Observer{
 	
 	private double humidity;
 	private double temperature;
-	private double orderTemperature;
 	private double timer = 0;
 	
 	private Icon okImage = new ImageIcon("image\\index.png");
@@ -73,10 +73,10 @@ public class View extends JFrame implements Observer{
 		condenLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(condenLabel);
 		
-		tempConsigneLabel = new JLabel("Température consigne = " + Double.toString(orderTemperature) + "°C");
-		tempConsigneLabel.setBounds(255, 60, 290, 20);
-		tempConsigneLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
-		this.getContentPane().add(tempConsigneLabel);
+		orderTempLabel = new JLabel("Température consigne = ");
+		orderTempLabel.setBounds(255, 60, 290, 20);
+		orderTempLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
+		this.getContentPane().add(orderTempLabel);
 		
 		orderLabel = new JLabel("Consigne :");
 		orderLabel.setBounds(570, 35, 100, 20);
@@ -137,15 +137,24 @@ public class View extends JFrame implements Observer{
 		this.temperature = temperature;
 		tempLabel.setText("Température = " + String.valueOf(this.temperature) + "°C");
 	}
-
-	public double getOrderTemperature() {
-		return orderTemperature;
+	
+	public JLabel getOrderTempLabel() {
+		return orderTempLabel;
 	}
 
-	public void setOrderTemperature(double orderTemperature) {
-		this.orderTemperature = orderTemperature;
+	public JTextField getOrderTextField() {
+		return orderTextField;
+	}
+
+	public JButton getValidateButton() {
+		return validateButton;
 	}
 	
+	public void addListener(ActionListener listenForAction){
+		this.validateButton.addActionListener(listenForAction);
+		this.orderTextField.addActionListener(listenForAction);
+	}
+
 	@Override
 	public void update(Observable obs, Object obj) {
 		// TODO Auto-generated method stub
@@ -161,7 +170,6 @@ public class View extends JFrame implements Observer{
 			System.out.println("Température = " + ((Model) obs).getTemperature());
 			System.out.println("Humidité = " + ((Model) obs).getHumidity());
 		}
-		
 	}
 	
 }

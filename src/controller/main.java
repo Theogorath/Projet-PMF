@@ -11,7 +11,5 @@ public class main {
 		Model model = new Model();
 		Controller controller = new Controller(view, model);
 		controller.launch();
-		controller.init();
-		controller.write();
 		}
 }

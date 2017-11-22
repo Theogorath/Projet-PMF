@@ -61,8 +61,60 @@ public class Communicator {
 			System.err.println(e.toString());
 		}
 	}
+	public void write(){
+		char flag = 0;
+		String valeur = "10";
+		try
+        {     	
+        	if (valeur.length()==1) {
+        		valeur = "000"+ valeur;
+        	} else if (valeur.length()==2) {
+        		valeur = "00"+ valeur;
+        	} else if (valeur.length()==3) {
+        		valeur = "0"+ valeur;
+        	}
+        	
+        	char[] valeurChar = valeur.toCharArray();
+        	
+        	//On envoi le message
+        	char a = '~';
+        	int c = a;
+            this.output.write(c);
+            output.flush();
+            a = flag;
+            c = a;
+            this.output.write(c);
+            output.flush();
+            a = valeurChar[0];
+            c = a;
+            this.output.write(c);
+            output.flush();
+            a = valeurChar[1];
+            c = a;
+            this.output.write(c);
+            output.flush();
+            a = valeurChar[2];
+            c = a;
+            this.output.write(c);
+            output.flush();
+            a = valeurChar[3];
+            c = a;
+            this.output.write(c);
+            output.flush();
+            a = '$';
+            c = a;
+            this.output.write(c);
+            output.flush();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Impossible d'écrire la donnée.");
+            e.printStackTrace();
+        }
+    }
 public void main(){
 	Communicator communicator=new Communicator();
 	communicator.initialize();
+	communicator.write();
 }
 }

@@ -110,24 +110,12 @@ public class View extends JFrame implements Observer{
 		
 	}
 	
-	/*public XYDataset createDataset(){
-		tempGraph.add(0, 0);
-		tempGraph.add(30, 10);
-		tempGraph.add(60, -10);
-		tempGraph.add(90, -5);
-		tempGraph.add(120, 20);
-		dataset.addSeries(tempGraph);
-		System.out.println("Taille du dataset (" + tempGraph.getClass() + ") = " + tempGraph.getItemCount());
-		return dataset;
-	}*/
-	
 	public void fillDataset(){
 		if(tempGraph.getItemCount() > 20){
 			tempGraph.add(timer, temperature);
 			tempGraph.remove(0);
 		} else {
 			tempGraph.add(timer, temperature);
-			
 		}
 		timer = timer + 30;
 	}
@@ -161,11 +149,15 @@ public class View extends JFrame implements Observer{
 	@Override
 	public void update(Observable obs, Object obj) {
 		// TODO Auto-generated method stub
-		System.out.println("update");
 		if(obs instanceof Model){
 			setTemperature(((Model) obs).getTemperature());
 			fillDataset();
 			setHumidity(((Model) obs).getHumidity());
+			if(((Model) obs).getDew() >= humidity){
+				stateConden.setIcon(warningImage);
+			}else{
+				stateConden.setIcon(okImage);
+			}
 			System.out.println("Température = " + ((Model) obs).getTemperature());
 			System.out.println("Humidité = " + ((Model) obs).getHumidity());
 		}

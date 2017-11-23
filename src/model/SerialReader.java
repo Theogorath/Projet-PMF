@@ -21,18 +21,18 @@ public class SerialReader implements Runnable {
             {
                 if (c==0) {
                 	c=1;
-                	String stockageHumidity = new String(buffer,0,len);
-                	System.out.print(stockageHumidity);
+                	this.model.setHumidity(new String(buffer,0,len));
+                	//System.out.print(stockageHumidity);
                 }
                 else if (c==1) {
                 	c=2;
-                	String stockageTemperature = new String(buffer,0,len);
-                	System.out.print(stockageTemperature);
+                	this.model.setTemperature(new String(buffer,0,len));
+                	//System.out.print(stockageTemperature);
                 }
                 else if (c==2) {
                 	c=0;
-                	String stockageMagnus = new String(buffer,0,len);
-                	System.out.print(stockageMagnus);
+                	this.model.setDew(new String(buffer,0,len));
+                	//System.out.print(stockageMagnus);
                 }
             }
         }

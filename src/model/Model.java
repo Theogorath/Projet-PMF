@@ -32,8 +32,8 @@ public class Model extends Observable {
 		this.humidity = humidity;
 		setChanged();
 		notifyObservers(this.humidity);
-		System.out.println(this.humidity);
-		System.out.println("a");
+		//System.out.println(this.humidity);
+		//System.out.println("a");
 	}
 	public String getOrder() {
 		return order;

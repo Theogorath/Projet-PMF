@@ -17,10 +17,11 @@ public class Controller {
 		this.view.addListener(new AddListener());
 	}
 
-	public void launch(){	
+	public void launch() throws Exception {	
 		this.view.setVisible(true);
-		ConnectionArduino connectionArduino = new ConnectionArduino(this.model);
+		ConnectionArduino connectionArduino = new ConnectionArduino();
 		connectionArduino.connect("COM4");
+		//connectionArduino.initialize();
 	}
 	
 	class AddListener implements ActionListener{

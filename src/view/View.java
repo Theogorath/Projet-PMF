@@ -159,10 +159,10 @@ public class View extends JFrame implements Observer{
 	public void update(Observable obs, Object obj) {
 		// TODO Auto-generated method stub
 		if(obs instanceof Model){
-			setTemperature(((Model) obs).getTemperature());
+			setTemperature(Double.valueOf(((Model) obs).getTemperature()));
 			fillDataset();
-			setHumidity(((Model) obs).getHumidity());
-			if(((Model) obs).getDew() >= humidity){
+			setHumidity(Double.valueOf(((Model) obs).getHumidity()));
+			if(Double.valueOf(((Model) obs).getDew()) >= humidity){
 				stateConden.setIcon(warningImage);
 			}else{
 				stateConden.setIcon(okImage);

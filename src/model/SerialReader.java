@@ -11,7 +11,6 @@ public class SerialReader implements Runnable {
     {
         this.in = in;
     }
-    
     public void run ()
     {
         byte[] buffer = new byte[1024];
@@ -21,19 +20,19 @@ public class SerialReader implements Runnable {
             while ( ( len = this.in.read(buffer)) > -1 )
             {
                 if (c==0) {
-                	String stockageHumidity = new String(buffer,0,len);
-                	//this.model.setHumidity(Double.parseDouble(stockageHumidity));
                 	c=1;
+                	String stockageHumidity = new String(buffer,0,len);
+                	System.out.print(stockageHumidity);
                 }
                 else if (c==1) {
                 	c=2;
                 	String stockageTemperature = new String(buffer,0,len);
-                	//this.model.setHumidity(Double.parseDouble(stockageTemperature));
+                	System.out.print(stockageTemperature);
                 }
                 else if (c==2) {
-                	String stockageMagnus = new String(buffer,0,len);
-                	//this.model.setHumidity(Double.parseDouble(stockageMagnus));
                 	c=0;
+                	String stockageMagnus = new String(buffer,0,len);
+                	System.out.print(stockageMagnus);
                 }
             }
         }

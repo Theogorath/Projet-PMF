@@ -20,7 +20,9 @@ public class Controller {
 	public void launch() throws Exception {	
 		this.view.setVisible(true);
 		ConnectionArduino connectionArduino = new ConnectionArduino();
-		connectionArduino.connect("COM4");
+		if(connectionArduino.connect("COM4") == true) {
+			System.out.println("vrai");
+		}
 		//connectionArduino.initialize();
 	}
 	

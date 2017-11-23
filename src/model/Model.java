@@ -7,7 +7,7 @@ public class Model extends Observable {
 	private double dew ;
 	private double temperature ;
 	private double humidity ;
-	private double order ;
+	private int order ;
 
 	public double getDew() {
 		return dew;
@@ -35,10 +35,10 @@ public class Model extends Observable {
 		//System.out.println(this.humidity);
 		//System.out.println("a");
 	}
-	public double getOrder() {
+	public int getOrder() {
 		return order;
 	}
-	public void setOrder(double order) {
+	public void setOrder(int order) {
 		this.order = order;
 	}
 

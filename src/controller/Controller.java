@@ -6,7 +6,7 @@ import model.ConnectionArduino;
 import model.Model;
 import view.View;
 public class Controller {
-	private String order = "0";
+	//private String order = "0";
 	private final View  view;
 	private final Model model;
 	
@@ -22,7 +22,7 @@ public class Controller {
 		this.view.setVisible(true);
 		ConnectionArduino connectionArduino = new ConnectionArduino(this.model);
 		
-		connectionArduino.initialize(this.order);
+		connectionArduino.initialize(/*this.order*/);
 	}
 	
 	class AddListener implements ActionListener{
@@ -31,9 +31,11 @@ public class Controller {
 			// TODO Auto-generated method stub
 			try {
 				System.out.println("TEEEEEEEEEEEST");
-				order = view.getOrderTextField().getText();
-				System.out.println(order);
-				view.getOrderTempLabel().setText("Température consigne = " + order + "°C");
+				//order = view.getOrderTextField().getText();
+				//System.out.println(order);
+				model.setOrder(Integer.valueOf(view.getOrderTextField().getText()));
+				System.out.println("Order (model) = " + model.getOrder());
+				view.getOrderTempLabel().setText("Température consigne = " + view.getOrderTextField().getText() + "°C");
 			} catch (Exception e2) {
 				// TODO: handle exception
 				
@@ -41,13 +43,13 @@ public class Controller {
 		}
 	}
 
-	public String getOrder() {
+	/*public String getOrder() {
 		return order;
 	}
 
 	public void setOrder(String order) {
 		this.order = order;
-	}
+	}*/
 
 	
 }

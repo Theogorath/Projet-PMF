@@ -45,8 +45,8 @@ public class ConnectionArduino implements SerialPortEventListener{
 		this.md = model;
 	}
 	
-	public void initialize(String order) {
-		this.order = Integer.valueOf(order);
+	public void initialize(/*String order*/) {
+		//this.order = Integer.valueOf(order);
 		CommPortIdentifier portId = null;
 		Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
 
@@ -128,7 +128,7 @@ public class ConnectionArduino implements SerialPortEventListener{
 			}
 		}
 		try {
-			this.output.write(this.order);
+			this.output.write(this.md.getOrder());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -6,7 +6,7 @@ import model.ConnectionArduino;
 import model.Model;
 import view.View;
 public class Controller {
-	
+	private String order = "0";
 	private final View  view;
 	private final Model model;
 	
@@ -15,15 +15,14 @@ public class Controller {
 		this.model = model;
 		this.model.addObserver(this.view);
 		this.view.addListener(new AddListener());
+		
 	}
 
 	public void launch() throws Exception {	
 		this.view.setVisible(true);
-		ConnectionArduino connectionArduino = new ConnectionArduino();
-		if(connectionArduino.connect("COM4") == true) {
-			System.out.println("vrai");
-		}
-		//connectionArduino.initialize();
+		ConnectionArduino connectionArduino = new ConnectionArduino(this.model);
+		
+		connectionArduino.initialize(this.order);
 	}
 	
 	class AddListener implements ActionListener{
@@ -31,7 +30,9 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			try {
-				String order = view.getOrderTextField().getText();
+				System.out.println("TEEEEEEEEEEEST");
+				order = view.getOrderTextField().getText();
+				System.out.println(order);
 				view.getOrderTempLabel().setText("Température consigne = " + order + "°C");
 			} catch (Exception e2) {
 				// TODO: handle exception
@@ -39,5 +40,14 @@ public class Controller {
 			}
 		}
 	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
 	
 }

@@ -4,41 +4,41 @@ package model;
 import java.util.*;
 
 public class Model extends Observable {
-	private double dew ;
-	private double temperature ;
-	private double humidity ;
-	private double order ;
+	private String dew ;
+	private String temperature ;
+	private String humidity ;
+	private String order ;
 
-	public double getDew() {
+	public String getDew() {
 		return dew;
 	}
-	public void setDew(double dew) {
+	public void setDew(String dew) {
 		this.dew = dew;
 		setChanged();
 		notifyObservers(this.dew);
 	}
-	public double getTemperature() {
+	public String getTemperature() {
 		return temperature;
 	}
-	public void setTemperature(double temperature) {
+	public void setTemperature(String temperature) {
 		this.temperature = temperature;
 		setChanged();
 		notifyObservers(this.temperature);
 	}
-	public double getHumidity() {
+	public String getHumidity() {
 		return humidity;
 	}
-	public void setHumidity(double humidity) {
+	public void setHumidity(String humidity) {
 		this.humidity = humidity;
 		setChanged();
 		notifyObservers(this.humidity);
 		System.out.println(this.humidity);
 		System.out.println("a");
 	}
-	public double getOrder() {
+	public String getOrder() {
 		return order;
 	}
-	public void setOrder(double order) {
+	public void setOrder(String order) {
 		this.order = order;
 	}
 

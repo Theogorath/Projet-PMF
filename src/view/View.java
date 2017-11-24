@@ -45,7 +45,7 @@ public class View extends JFrame implements Observer{
 	
 	private double humidity;
 	private double temperature;
-	private double timer = 0;
+	private int timer = 0;
 	
 	private Icon okImage = new ImageIcon("image\\index.png");
 	private Icon warningImage = new ImageIcon("image\\index2.png");
@@ -112,12 +112,16 @@ public class View extends JFrame implements Observer{
 	
 	public void fillDataset(){
 		if(tempGraph.getItemCount() > 20){
+			if(timer == 21){
+				timer = 0;
+			}
+			//tempGraph.add(timer, temperature);
+			tempGraph.remove(timer);
+		} /*else {
 			tempGraph.add(timer, temperature);
-			tempGraph.remove(0);
-		} else {
-			tempGraph.add(timer, temperature);
-		}
-		timer = timer + 30;
+		}*/
+		tempGraph.add(timer, temperature);
+		timer++;
 	}
 	
 	public double getHumidity() {

@@ -166,7 +166,7 @@ public class View extends JFrame implements Observer{
 			setTemperature(((Model) obs).getTemperature());
 			fillDataset();
 			setHumidity(((Model) obs).getHumidity());
-			if(((Model) obs).getDew() >= humidity){
+			if(((Model) obs).getDew() >= temperature){
 				stateConden.setIcon(warningImage);
 			}else{
 				stateConden.setIcon(okImage);

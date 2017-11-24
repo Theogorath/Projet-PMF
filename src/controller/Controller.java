@@ -6,7 +6,7 @@ import model.ConnectionArduino;
 import model.Model;
 import view.View;
 public class Controller {
-	//private String order = "0";
+	//private String order = "7";
 	private final View  view;
 	private final Model model;
 	

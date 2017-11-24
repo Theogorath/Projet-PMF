@@ -91,6 +91,9 @@ public class ConnectionArduino implements SerialPortEventListener{
 	}
 
 	public synchronized void serialEvent(SerialPortEvent oEvent) {
+		
+		int g = this.md.getOrder();
+		//System.out.println(g);
 		if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
 			try {
 				String inputLine=null;
@@ -128,7 +131,10 @@ public class ConnectionArduino implements SerialPortEventListener{
 			}
 		}
 		try {
-			this.output.write(this.md.getOrder());
+			g = this.md.getOrder();
+			this.output.write(g);
+			System.out.print("blblbl");
+			System.out.println(g);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

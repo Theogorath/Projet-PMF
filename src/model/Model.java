@@ -7,7 +7,7 @@ public class Model extends Observable {
 	private double dew ;
 	private double temperature ;
 	private double humidity ;
-	private int order ;
+	private int order;
 
 	public double getDew() {
 		return dew;

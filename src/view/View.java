@@ -64,7 +64,7 @@ public class View extends JFrame implements Observer{
 		this.getContentPane().setBackground(Color.WHITE);
 		
 		tempLabel = new JLabel("Température = " + Double.toString(temperature) + "°C");
-		tempLabel.setBounds(134, 98, 231, 20);
+		tempLabel.setBounds(134, 98, 270, 20);
 		tempLabel.setFont(new Font("Lucida Console", Font.BOLD, 18));
 		this.getContentPane().add(tempLabel);
 		
@@ -80,7 +80,7 @@ public class View extends JFrame implements Observer{
 		this.getContentPane().add(humiImageLabel);
 		
 		condenLabel = new JLabel("Risque de condensation");
-		condenLabel.setBounds(852, 228, 287, 28);
+		condenLabel.setBounds(852, 228, 287, 35);
 		condenLabel.setFont(new Font("Lucida Console", Font.BOLD, 18));
 		this.getContentPane().add(condenLabel);
 		

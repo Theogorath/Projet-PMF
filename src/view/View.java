@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -12,7 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -33,6 +33,8 @@ public class View extends JFrame implements Observer{
 	private JLabel condenLabel;
 	private JLabel orderTempLabel;
 	private JLabel orderLabel;
+	private JLabel tempImageLabel;
+	private JLabel humiImageLabel;
 	private JTextField orderTextField;
 	private JButton validateButton;
 	private JLabel stateConden;
@@ -49,33 +51,42 @@ public class View extends JFrame implements Observer{
 	
 	private Icon okImage = new ImageIcon("image\\index.png");
 	private Icon warningImage = new ImageIcon("image\\index2.png");
+	private Icon tempImage = new ImageIcon("image\\temerature.png");
+	private Icon humiImage = new ImageIcon("image\\humidity.png");
 	
 	public View(){
 		this.setTitle("Programme");
-		this.setSize(800, 450);
+		this.setSize(1200, 800);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.getContentPane().setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setBackground(Color.WHITE);
 		
 		tempLabel = new JLabel("Température = " + Double.toString(temperature) + "°C");
-		tempLabel.setBounds(295, 35, 210, 20);
-		tempLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
+		tempLabel.setBounds(134, 98, 231, 20);
+		tempLabel.setFont(new Font("Lucida Console", Font.BOLD, 18));
 		this.getContentPane().add(tempLabel);
 		
-		humiLabel = new JLabel("Humidité = " + Double.toString(humidity) + "%");
-		humiLabel.setBounds(20, 35, 150, 20);
-		humiLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
+		humiLabel = new JLabel(Double.toString(humidity) + "%");
+		humiLabel.setBounds(576, 125, 72, 28);
+		humiLabel.setForeground(Color.WHITE);
+		humiLabel.setFont(new Font("Lucida Console", Font.BOLD, 18));
 		this.getContentPane().add(humiLabel);
 		
-		condenLabel = new JLabel("Risque de condensation :");
-		condenLabel.setBounds(400, 150, 250, 20);
-		condenLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
+		humiImageLabel = new JLabel();
+		humiImageLabel.setBounds(486, 11, 250, 245);
+		humiImageLabel.setIcon(humiImage);
+		this.getContentPane().add(humiImageLabel);
+		
+		condenLabel = new JLabel("Risque de condensation");
+		condenLabel.setBounds(852, 228, 287, 28);
+		condenLabel.setFont(new Font("Lucida Console", Font.BOLD, 18));
 		this.getContentPane().add(condenLabel);
 		
 		orderTempLabel = new JLabel("Température consigne = ");
-		orderTempLabel.setBounds(255, 60, 290, 20);
-		orderTempLabel.setFont(new Font("Lucida Console", Font.PLAIN, 15));
+		orderTempLabel.setBounds(134, 129, 342, 21);
+		orderTempLabel.setFont(new Font("Lucida Console", Font.BOLD, 18));
 		this.getContentPane().add(orderTempLabel);
 		
 		orderLabel = new JLabel("Consigne :");
@@ -84,25 +95,28 @@ public class View extends JFrame implements Observer{
 		this.getContentPane().add(orderLabel);
 		
 		orderTextField = new JTextField();
-		orderTextField.setBounds(670, 35, 100, 20);
+		orderTextField.setBounds(287, 163, 112, 20);
 		this.getContentPane().add(orderTextField);
 		
 		validateButton = new JButton("Valider");
-		validateButton.setBounds(620, 60, 100, 25);
+		validateButton.setBounds(169, 161, 100, 23);
 		validateButton.setFont(new Font("Lucida Console", Font.PLAIN, 15));
 		this.getContentPane().add(validateButton);
 		
 		stateConden = new JLabel();
-		stateConden.setBounds(450, 180, 225, 225);
+		stateConden.setBounds(872, 19, 225, 225);
 		stateConden.setIcon(okImage);
 		this.getContentPane().add(stateConden);
+		
+		tempImageLabel = new JLabel();
+		tempImageLabel.setBounds(-24, 19, 158, 237);
+		tempImageLabel.setIcon(tempImage);
+		this.getContentPane().add(tempImageLabel);
 		
 		dataset.addSeries(tempGraph);
 		xylineChart = ChartFactory.createXYLineChart("", "Temps", "Température", dataset, PlotOrientation.VERTICAL, false, false, false);
 		chartPanel = new ChartPanel(xylineChart);
-		chartPanel.setBorder(UIManager.getBorder("TextField.border"));
-		chartPanel.setSize(350, 260);
-		chartPanel.setLocation(10, 150);
+		chartPanel.setBounds(0, 307, 1190, 462);
 		plot = xylineChart.getXYPlot();
 		renderer.setSeriesStroke(0, new BasicStroke(2.0f));
 		plot.setRenderer(renderer);
@@ -115,11 +129,8 @@ public class View extends JFrame implements Observer{
 			if(timer == 21){
 				timer = 0;
 			}
-			//tempGraph.add(timer, temperature);
 			tempGraph.remove(timer);
-		} /*else {
-			tempGraph.add(timer, temperature);
-		}*/
+		}
 		tempGraph.add(timer, temperature);
 		timer++;
 	}
@@ -130,7 +141,7 @@ public class View extends JFrame implements Observer{
 
 	public void setHumidity(double humidity) {
 		this.humidity = humidity;
-		humiLabel.setText("Humidité = " + String.valueOf(this.humidity) + "%");
+		humiLabel.setText(Double.toString(humidity) + "%");
 	}
 
 	public double getTemperature() {
@@ -171,8 +182,8 @@ public class View extends JFrame implements Observer{
 			}else{
 				stateConden.setIcon(okImage);
 			}
-			System.out.println("Température = " + ((Model) obs).getTemperature());
-			System.out.println("Humidité = " + ((Model) obs).getHumidity());
+			//System.out.println("Température = " + ((Model) obs).getTemperature());
+			//System.out.println("Humidité = " + ((Model) obs).getHumidity());
 		}
 	}
 	
